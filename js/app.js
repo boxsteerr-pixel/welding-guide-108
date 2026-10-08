@@ -64,6 +64,75 @@
 
     const body = document.createElement("div");
     body.className = "entry-body";
+    if (Array.isArray(item.procedure)) {
+      details.classList.add("chiller-procedure");
+      const subtitle = document.createElement("p");
+      subtitle.className = "chiller-subtitle";
+      subtitle.append(text(item.subtitle));
+      body.append(subtitle);
+      item.procedure.forEach(function (block) {
+        const card = document.createElement("section");
+        card.className = `step-card chiller-block chiller-block--${block.tone || "operation"}`;
+        const heading = document.createElement("h3");
+        if (block.number) {
+          const number = document.createElement("span");
+          number.className = "chiller-number";
+          number.append(text(`STEP ${block.number}`));
+          heading.append(number);
+        }
+        heading.append(text(block.title));
+        card.append(heading);
+        (block.paragraphs || []).forEach(function (line) {
+          const paragraph = document.createElement("p");
+          // Array segments are explicit emphasis authored in the data, never HTML.
+          (Array.isArray(line) ? line : [line]).forEach(function (segment) {
+            if (typeof segment === "string") paragraph.append(text(segment));
+            else {
+              const strong = document.createElement("strong");
+              strong.className = `chiller-emphasis chiller-emphasis--${segment.tone || "blue"}`;
+              strong.append(text(segment.text));
+              paragraph.append(strong);
+            }
+          });
+          card.append(paragraph);
+        });
+        if (block.flow) {
+          const flow = document.createElement("ol");
+          flow.className = "chiller-flow";
+          block.flow.forEach(function (line) {
+            const node = document.createElement("li"); node.append(text(line)); flow.append(node);
+          });
+          card.append(flow);
+        }
+        if (block.confirmations) {
+          const list = document.createElement("ul"); list.className = "chiller-confirmations";
+          block.confirmations.forEach(function (line) {
+            const node = document.createElement("li"); node.append(text(`✓ ${line}`)); list.append(node);
+          });
+          card.append(list);
+        }
+        if (block.image) {
+          const image = document.createElement("img");
+          image.src = block.image; image.alt = block.alt; image.loading = "lazy";
+          image.tabIndex = 0; image.setAttribute("role", "button");
+          image.setAttribute("aria-label", `查看大图：${block.alt}`);
+          image.addEventListener("click", function () { openImage(image); });
+          image.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openImage(image); }
+          });
+          const hint = document.createElement("span"); hint.className = "image-hint";
+          hint.append(text("点击查看大图 · 双指缩放")); card.append(image, hint);
+        }
+        if (block.conclusion) {
+          const conclusion = document.createElement("p");
+          const strong = document.createElement("strong");
+          strong.append(text(block.conclusion)); conclusion.append(strong); card.append(conclusion);
+        }
+        body.append(card);
+      });
+      details.append(summary, body);
+      return details;
+    }
     body.append(risk);
     if (item.summary) {
       const paragraph = document.createElement("p");

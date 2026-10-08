@@ -4,18 +4,86 @@
     "machineId": "108",
     "machineName": "108激光焊机",
     "manualTitle": "操作工快速处置手册",
-    "manualVersion": "0.1.0",
-    "contentStatus": "空白内容框架",
-    "lastUpdated": "2026-09-29"
+    "manualVersion": "0.2.0",
+    "contentStatus": "已录入1项异常处理",
+    "lastUpdated": "2026-10-07"
   },
   "notices": [
     {
       "level": "warning",
-      "title": "内容尚未发布",
-      "body": "当前仅建立独立手册框架。正式故障处置、维护和安全内容须经现场审核后录入。"
+      "title": "内容范围",
+      "body": "当前已录入激光器冷水机切换手顺；日常维护和安全事项内容待录入。"
     }
   ],
-  "faults": [],
+  "faults": [
+    {
+      "id": "chiller-no-ready-signal",
+      "category": "冷水机异常",
+      "title": "激光器冷水机切换",
+      "subtitle": "焊机提示“冷水机没有准备信号”时的应急切换手顺",
+      "summary": "2#冷水机切换至1#冷水机",
+      "risk": "high",
+      "keywords": ["激光器冷水机切换", "冷水机", "无准备信号", "冷水机没有准备信号"],
+      "procedure": [
+        {
+          "title": "异常现象",
+          "paragraphs": ["焊机画面提示：“冷水机没有准备信号”", "当前在线使用2#冷水机。", "首先在2#冷水机操作屏尝试：故障复位 → 再次启动。", "如果故障无法复位，且2#冷水机无法重新启动，再执行以下切换操作。"],
+          "image": "./assets/images/chiller-overview.png",
+          "alt": "1#、2#冷水机及背面切换阀台位置"
+        },
+        {
+          "title": "⚠ 冷水机切换安全要求",
+          "tone": "warning",
+          "paragraphs": ["切换阀门前，必须确认：", [{"text": "1#冷水机 L/min = 0", "tone": "red"}], [{"text": "2#冷水机 L/min = 0", "tone": "red"}], "即两台冷水机均已停止。", [{"text": "严禁在任意一台冷水机运行状态下切换阀门。", "tone": "red"}]]
+        },
+        {
+          "number": "01", "title": "确认2#冷水机停止",
+          "paragraphs": ["到当前在线使用的2#冷水机操作屏。", "尝试：故障复位 → 再次启动。", "如果故障无法复位或无法重新启动：", ["确认：流量 ", {"text": "L/min = 0"}, "，表示2#冷水机已经停止。"]],
+          "image": "./assets/images/chiller-2-panel.png",
+          "alt": "2#冷水机操作屏最终标注图片"
+        },
+        {
+          "number": "02", "title": "确认1#冷水机停止",
+          "paragraphs": ["到1#冷水机操作屏。", ["确认：流量 ", {"text": "L/min = 0"}, "，表示1#冷水机已经停止。"], "只有确认1#、2#冷水机流量均为0后，才能进入下一步。"],
+          "image": "./assets/images/chiller-1-panel.png",
+          "alt": "1#冷水机HMI最终高清标注图片"
+        },
+        {
+          "number": "03", "title": "切换阀台至1#冷水机", "tone": "valves",
+          "paragraphs": ["到两台冷水机背面的切换阀台。", "确认两台冷水机均已停止后，将一排3个切换手柄："],
+          "flow": ["竖直位置（2#）", "逆时针旋转90°", "横向位置（1#）"],
+          "confirmations": ["3个手柄全部处于横向位置。"],
+          "image": "./assets/images/chiller-switch-valves.png",
+          "alt": "切换阀台：3个手柄从竖直逆时针旋转90°至横向"
+        },
+        {
+          "title": "阀位对应", "tone": "valves",
+          "paragraphs": [[{"text": "横向 ＝ 1#冷水机"}], [{"text": "竖直 ＝ 2#冷水机"}]]
+        },
+        {
+          "number": "04", "title": "切换至1#接入",
+          "paragraphs": ["到1#冷水机操作屏。", "找到“启动键”上方的接入按钮。", ["操作前：红色 ", {"text": "【按键】2#接入", "tone": "red"}], ["按下后应变为：绿色 ", {"text": "【按键】1#接入", "tone": "green"}], ["确认：", {"text": "“1#接入”为绿色", "tone": "green"}, "，再进行下一步。"]],
+          "image": "./assets/images/chiller-1-panel.png",
+          "alt": "1#冷水机操作屏：接入按钮位于启动键上方"
+        },
+        {
+          "number": "05", "title": "启动1#冷水机",
+          "paragraphs": ["按下1#冷水机：“启动键”。"],
+          "confirmations": ["冷水机正常启动", "L/min流量恢复", "无新的故障报警"],
+          "conclusion": "全部正常后：2#冷水机 → 1#冷水机切换完成"
+        },
+        {
+          "title": "✓ 切换完成", "tone": "success",
+          "confirmations": ["1#冷水机已运行", "流量正常", "无故障报警", "1#接入状态正确"]
+        },
+        {
+          "title": "快速记忆", "tone": "memory",
+          "flow": ["2#流量=0", "1#流量=0", "三阀：竖 → 横（逆时针90°）", "1#接入变绿", "启动1#", "确认流量恢复"],
+          "conclusion": "先停机，后切阀；两台流量不为0，禁止切阀。"
+        }
+      ]
+    }
+  ],
   "maintenance": [],
   "safety": []
 }

@@ -219,3 +219,27 @@ button:focus-visible, input:focus-visible, summary:focus-visible { outline:3px s
 .fault-row strong { display:block; color:#163a60; font-size:17px; }
 .fault-row small { display:block; color:#70869d; font-size:13px; }
 .fault-row > em { color:#4f6d88; font-size:32px; font-style:normal; }
+
+/* Only the new chiller procedure; existing entries retain their styling. */
+.chiller-procedure > summary > span { white-space:pre-line; }
+.chiller-procedure:not([open]) > .entry-body { display:none; }
+.chiller-procedure .entry-body { overflow-wrap:anywhere; }
+.chiller-procedure .chiller-subtitle { margin:12px 0; color:var(--muted); font-size:14px; }
+.chiller-procedure .chiller-block { padding:14px; border-left:3px solid var(--blue); }
+.chiller-procedure .chiller-block h3 { margin:0 0 10px; color:var(--ink); font-size:19px; line-height:1.45; }
+.chiller-procedure .chiller-number { display:block; margin-bottom:4px; color:var(--blue); font-size:13px; letter-spacing:.05em; }
+.chiller-procedure .chiller-block p { margin:9px 0; }
+.chiller-procedure .chiller-block--warning { border-color:#efb5b5; border-left-color:var(--danger); background:#fff2f2; }
+.chiller-procedure .chiller-block--warning h3 { color:#b32028; }
+.chiller-procedure .chiller-block--success { border-color:#b9dfce; border-left-color:var(--safe); background:#effaf4; }
+.chiller-procedure .chiller-block--success h3 { color:#126b48; }
+.chiller-procedure .chiller-emphasis { color:#075b9b; background:#e5f2ff; padding:1px 3px; border-radius:3px; }
+.chiller-procedure .chiller-emphasis--red { color:#b32028; background:#ffe0e0; }
+.chiller-procedure .chiller-emphasis--green { color:#126b48; background:#dcf5e7; }
+.chiller-procedure .chiller-flow { padding:0; margin:12px 0; list-style:none; text-align:center; color:#075b9b; font-weight:800; }
+.chiller-procedure .chiller-flow li + li::before { content:"↓"; display:block; color:var(--muted); }
+.chiller-procedure .chiller-confirmations { list-style:none; padding:0; color:#126b48; font-weight:700; }
+.chiller-procedure .chiller-block img { width:100%; height:auto; max-height:none; object-fit:contain; }
+.chiller-procedure .chiller-block--operation img { width:92%; margin-left:auto; margin-right:auto; }
+.chiller-procedure .chiller-block--valves { padding:10px; border-left-color:var(--blue); background:#edf6fd; }
+.chiller-procedure .chiller-block--memory { background:#edf6fd; }
