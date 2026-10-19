@@ -13,8 +13,23 @@ const manifest = JSON.parse(manifestText);
 
 assert.equal(manual.machine.machineId, "108");
 assert.equal(manual.machine.machineName, "108激光焊机");
-assert.equal(manual.machine.manualVersion, "0.3.2");
-assert.equal(manual.faults.length, 7);
+assert.equal(manual.machine.manualVersion, "0.3.3");
+assert.equal(manual.faults.length, 8);
+assert.equal(new Set(manual.faults.map(item => item.id)).size, manual.faults.length);
+const belt = manual.faults.at(-1);
+assert.equal(belt.id, "scissor-scrap-belt-discharge");
+assert.equal(belt.title, "剪刀废料皮带排放异常处理");
+const beltSteps = belt.procedure.filter(block => block.number);
+assert.deepEqual(beltSteps.map(block => block.number), ["01", "02", "03", "04"]);
+assert.equal(belt.procedure[0].image, beltSteps[0].image);
+assert.match(beltSteps[1].image, /manual-to-auto/);
+assert.match(beltSteps[2].image, /shear-adjustment-mode/);
+assert.match(JSON.stringify(beltSteps[1]), /直接进入步骤4/);
+assert.match(JSON.stringify(beltSteps[2]), /仅在步骤2后信号仍闪烁/);
+assert.match(JSON.stringify(beltSteps[3]), /退出调整模式/);
+assert.match(JSON.stringify(belt), /3次后，建议提前清理；5次为当前现场允许的连续剪切上限/);
+assert.match(JSON.stringify(belt), /等待完整17秒/);
+assert.match(JSON.stringify(belt), /不直接认定为PLC故障/);
 const procedure = manual.faults[0].procedure;
 assert.deepEqual(procedure.filter(block => block.number).map(block => block.number), ["01", "02", "03", "04", "05"]);
 assert.equal(procedure[1].tone, "warning");
@@ -69,7 +84,7 @@ for (const block of plc.procedure.filter(block => block.image)) {
   await stat(path.join(root, block.image));
   assert.ok(sw.includes(`"${block.image}"`));
 }
-assert.match(sw, /const CACHE_NAME = "welding-guide-108-v18"/);
+assert.match(sw, /const CACHE_NAME = "welding-guide-108-v19"/);
 assert.doesNotMatch(dataText, /needs_review|待审核|待现场审核|本地草稿|未审核|安全审核|本地新增，待人工核对/);
 const approvedIds = ["centering-block-2-3-home-jam", "secondary-cut-manual-operation", "restore-welder-auto", "nozzle-unblocking-penetration-curve"];
 for (const id of approvedIds) assert.equal(manual.faults.find(item => item.id === id).status, "approved");

@@ -1,7 +1,10 @@
-const CACHE_NAME = "welding-guide-108-v18";
+const CACHE_NAME = "welding-guide-108-v19";
 const CACHE_PREFIX = "welding-guide-108-";
 const APP_ROOT = new URL("./", self.location.href);
 const CORE_ASSETS = [
+  "./assets/images/scrap-belt-flashing-stop.png",
+  "./assets/images/scrap-belt-manual-to-auto.png",
+  "./assets/images/scrap-belt-shear-adjustment-mode.png",
   "./assets/images/centering-home-force.png",
   "./assets/images/centering-manual-exit.png",
   "./assets/images/secondary-cut-position-hmi.png",
