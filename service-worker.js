@@ -1,7 +1,23 @@
-const CACHE_NAME = "welding-guide-108-v11";
+const CACHE_NAME = "welding-guide-108-v16";
 const CACHE_PREFIX = "welding-guide-108-";
 const APP_ROOT = new URL("./", self.location.href);
 const CORE_ASSETS = [
+  "./assets/images/centering-home-force.png",
+  "./assets/images/centering-manual-exit.png",
+  "./assets/images/secondary-cut-position-hmi.png",
+  "./assets/images/auto-initial-conditions-annotated.png",
+  "./assets/images/auto-mode-key-switch.png",
+  "./assets/images/nozzle-auxiliary-gas-hmi.png",
+  "./assets/images/nozzle-upper-outlet.png",
+  "./assets/images/nozzle-lower-outlet.png",
+  "./assets/images/hmi-exit-button-annotated.png",
+  "./assets/images/hmi-plc-connection-alarm.png",
+  "./assets/images/hmi-host-lan-connector.png",
+  "./assets/images/hmi-start-screen-reference.png",
+  "./assets/images/segment-focus-machine-adjustment-entry.png",
+  "./assets/images/segment-focus-pulse-mode-on.png",
+  "./assets/images/table-controller-annotated-corrected.png",
+  "./assets/images/table-original-position-reset.png",
   "./assets/images/chiller-overview.png",
   "./assets/images/chiller-2-panel.png",
   "./assets/images/chiller-1-panel.png",
