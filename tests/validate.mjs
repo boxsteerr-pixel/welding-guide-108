@@ -13,7 +13,7 @@ const manifest = JSON.parse(manifestText);
 
 assert.equal(manual.machine.machineId, "108");
 assert.equal(manual.machine.machineName, "108激光焊机");
-assert.equal(manual.machine.manualVersion, "0.3.1");
+assert.equal(manual.machine.manualVersion, "0.3.2");
 assert.equal(manual.faults.length, 7);
 const procedure = manual.faults[0].procedure;
 assert.deepEqual(procedure.filter(block => block.number).map(block => block.number), ["01", "02", "03", "04", "05"]);
@@ -43,7 +43,7 @@ for (const block of focusImages) {
   await stat(path.join(root, block.image));
   assert.ok(sw.includes(`"${block.image}"`));
 }
-for (const marker of ["图2待补", "图3待补", "图4待补", "图5待补", "图6待补"]) assert.ok(JSON.stringify(focus).includes(marker));
+assert.doesNotMatch(dataText, /待补|缺图/);
 assert.deepEqual(manual.safety, []);
 assert.equal(manifest.start_url, "./");
 assert.equal(manifest.scope, "./");
@@ -69,7 +69,7 @@ for (const block of plc.procedure.filter(block => block.image)) {
   await stat(path.join(root, block.image));
   assert.ok(sw.includes(`"${block.image}"`));
 }
-assert.match(sw, /const CACHE_NAME = "welding-guide-108-v17"/);
+assert.match(sw, /const CACHE_NAME = "welding-guide-108-v18"/);
 assert.doesNotMatch(dataText, /needs_review|待审核|待现场审核|本地草稿|未审核|安全审核|本地新增，待人工核对/);
 const approvedIds = ["centering-block-2-3-home-jam", "secondary-cut-manual-operation", "restore-welder-auto", "nozzle-unblocking-penetration-curve"];
 for (const id of approvedIds) assert.equal(manual.faults.find(item => item.id === id).status, "approved");
