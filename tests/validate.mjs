@@ -13,7 +13,7 @@ const manifest = JSON.parse(manifestText);
 
 assert.equal(manual.machine.machineId, "108");
 assert.equal(manual.machine.machineName, "108激光焊机");
-assert.equal(manual.machine.manualVersion, "0.3.0");
+assert.equal(manual.machine.manualVersion, "0.3.1");
 assert.equal(manual.faults.length, 7);
 const procedure = manual.faults[0].procedure;
 assert.deepEqual(procedure.filter(block => block.number).map(block => block.number), ["01", "02", "03", "04", "05"]);
@@ -69,7 +69,7 @@ for (const block of plc.procedure.filter(block => block.image)) {
   await stat(path.join(root, block.image));
   assert.ok(sw.includes(`"${block.image}"`));
 }
-assert.match(sw, /const CACHE_NAME = "welding-guide-108-v16"/);
+assert.match(sw, /const CACHE_NAME = "welding-guide-108-v17"/);
 assert.doesNotMatch(dataText, /needs_review|待审核|待现场审核|本地草稿|未审核|安全审核|本地新增，待人工核对/);
 const approvedIds = ["centering-block-2-3-home-jam", "secondary-cut-manual-operation", "restore-welder-auto", "nozzle-unblocking-penetration-curve"];
 for (const id of approvedIds) assert.equal(manual.faults.find(item => item.id === id).status, "approved");
@@ -78,9 +78,12 @@ for (const item of [...manual.faults, ...manual.maintenance]) {
     if (block.image) { await stat(path.join(root, block.image)); assert.ok(sw.includes(`"${block.image}"`)); }
   }
 }
-assert.match(JSON.stringify(manual.faults.find(item => item.id === "centering-block-2-3-home-jam")), /强制信号不等于实际设备状态恢复/);
+assert.match(JSON.stringify(manual.faults.find(item => item.id === "centering-block-2-3-home-jam")), /不得将强制信号视为设备已恢复正常/);
 assert.match(JSON.stringify(manual.faults.find(item => item.id === "secondary-cut-manual-operation")), /2秒及以上/);
-assert.match(JSON.stringify(manual.faults.find(item => item.id === "restore-welder-auto")), /不得仅凭钥匙开关位置/);
+assert.match(JSON.stringify(manual.faults.find(item => item.id === "restore-welder-auto")), /钥匙开关位置不代表全部设备已满足自动运行条件/);
+for (const [id, title] of [["centering-block-2-3-home-jam", "安全提示"], ["secondary-cut-manual-operation", "操作提醒"], ["restore-welder-auto", "操作提醒"], ["hmi-plc-connection-failure", "警示及重点提示"]]) {
+  assert.ok(!manual.faults.find(item => item.id === id).procedure.some(block => block.title === title));
+}
 assert.match(JSON.stringify(manual.faults.find(item => item.id === "nozzle-unblocking-penetration-curve")), /身体不得探入旁边剪刀区域/);
 assert.match(html, /id="currentTime"/);
 assert.match(html, /system-time\.js\?v=1/);
