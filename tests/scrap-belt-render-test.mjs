@@ -8,6 +8,7 @@ class Node {
   constructor(tag) { this.tag = tag; this.children = []; this.dataset = {}; this.handlers = {}; this.classList = { add() {} }; }
   append(...nodes) { this.children.push(...nodes); }
   setAttribute(name, value) { this[name] = value; }
+  removeAttribute(name) { delete this[name]; }
   addEventListener(name, callback) { this.handlers[name] = callback; }
 }
 let opened;
@@ -33,8 +34,8 @@ assert.equal(images, 4);
 const css = await fs.readFile(new URL('css/style.css', root), 'utf8');
 assert.match(css, /\.chiller-block img\s*\{[^}]*width:100%;[^}]*height:auto/);
 assert.match(css, /\.chiller-flow li \+ li::before\s*\{[^}]*display:block/);
-const base = 'http://127.0.0.1:4194/welding-guide-108/';
-for (const image of new Set(item.procedure.map(block => block.image).filter(Boolean))) {
+const base = process.env.PREVIEW_BASE || 'http://127.0.0.1:4195/welding-guide-108/';
+for (const image of new Set(item.procedure.map(block => block.image && block.image.replace(/\.png$/, '.webp')).filter(Boolean))) {
   const response = await fetch(new URL(image, base));
   assert.equal(response.status, 200);
   assert.deepEqual(Buffer.from(await response.arrayBuffer()), await fs.readFile(new URL(image, root)));

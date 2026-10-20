@@ -13,7 +13,7 @@ const manifest = JSON.parse(manifestText);
 
 assert.equal(manual.machine.machineId, "108");
 assert.equal(manual.machine.machineName, "108激光焊机");
-assert.equal(manual.machine.manualVersion, "0.3.5");
+assert.equal(manual.machine.manualVersion, "0.3.6");
 assert.equal(manual.faults.length, 8);
 assert.equal(new Set(manual.faults.map(item => item.id)).size, manual.faults.length);
 const belt = manual.faults.at(-1);
@@ -94,13 +94,13 @@ for (const block of plc.procedure.filter(block => block.image)) {
   await stat(path.join(root, block.image));
   assert.ok(sw.includes(`"${block.image}"`));
 }
-assert.match(sw, /const CACHE_NAME = "welding-guide-108-v22"/);
+assert.match(sw, /const CACHE_NAME = "welding-guide-108-v23"/);
 assert.doesNotMatch(dataText, /needs_review|待审核|待现场审核|本地草稿|未审核|安全审核|本地新增，待人工核对/);
 const approvedIds = ["centering-block-2-3-home-jam", "secondary-cut-manual-operation", "restore-welder-auto", "nozzle-unblocking-penetration-curve"];
 for (const id of approvedIds) assert.equal(manual.faults.find(item => item.id === id).status, "approved");
 for (const item of [...manual.faults, ...manual.maintenance]) {
   for (const block of item.procedure || []) {
-    if (block.image) { await stat(path.join(root, block.image)); assert.ok(sw.includes(`"${block.image}"`)); }
+    if (block.image) { await stat(path.join(root, block.image)); await stat(path.join(root, block.image.replace(/\.png$/, ".webp"))); assert.ok(sw.includes(`"${block.image}"`)); }
   }
 }
 assert.match(JSON.stringify(manual.faults.find(item => item.id === "centering-block-2-3-home-jam")), /不得将强制信号视为设备已恢复正常/);
