@@ -32,5 +32,5 @@ for(const file of ['index.html','data/manual.json',...imageFiles]){
   const result=await response;assert.equal(result.status,200);const bytes=Buffer.from(await result.arrayBuffer());
   assert.deepEqual(bytes,await fs.readFile(path.join(root,file)));console.log('Offline cache simulation PASS: '+file);
 }
-assert.ok(stores.has('welding-guide-108-v19'));
+assert.ok(stores.has('welding-guide-108-v22'));
 console.log('PASS: unchanged worker policy installs new assets and serves new data/images without network (simulation, not real browser offline test)');

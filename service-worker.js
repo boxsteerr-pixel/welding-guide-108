@@ -1,4 +1,4 @@
-const CACHE_NAME = "welding-guide-108-v19";
+const CACHE_NAME = "welding-guide-108-v22";
 const CACHE_PREFIX = "welding-guide-108-";
 const APP_ROOT = new URL("./", self.location.href);
 const CORE_ASSETS = [
@@ -22,8 +22,8 @@ const CORE_ASSETS = [
   "./assets/images/table-controller-annotated-corrected.png",
   "./assets/images/table-original-position-reset.png",
   "./assets/images/chiller-overview.png",
-  "./assets/images/chiller-2-panel.png",
-  "./assets/images/chiller-1-panel.png",
+  "./assets/images/chiller-2-panel-status.png",
+  "./assets/images/chiller-1-panel-startup.png",
   "./assets/images/chiller-switch-valves.png",
   "./css/mobile-header.css?v=2",
   "./js/system-time.js?v=1",

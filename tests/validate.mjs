@@ -13,7 +13,7 @@ const manifest = JSON.parse(manifestText);
 
 assert.equal(manual.machine.machineId, "108");
 assert.equal(manual.machine.machineName, "108激光焊机");
-assert.equal(manual.machine.manualVersion, "0.3.3");
+assert.equal(manual.machine.manualVersion, "0.3.5");
 assert.equal(manual.faults.length, 8);
 assert.equal(new Set(manual.faults.map(item => item.id)).size, manual.faults.length);
 const belt = manual.faults.at(-1);
@@ -31,10 +31,20 @@ assert.match(JSON.stringify(belt), /3次后，建议提前清理；5次为当前
 assert.match(JSON.stringify(belt), /等待完整17秒/);
 assert.match(JSON.stringify(belt), /不直接认定为PLC故障/);
 const procedure = manual.faults[0].procedure;
-assert.deepEqual(procedure.filter(block => block.number).map(block => block.number), ["01", "02", "03", "04", "05"]);
+assert.equal(procedure.find(block => block.title.startsWith("一、投入2#")).image, "./assets/images/chiller-2-panel-status.png");
+assert.equal(procedure.find(block => block.title === "三、投入1#冷水机主机").image, "./assets/images/chiller-1-panel-startup.png");
+assert.ok(procedure.filter(block => block.number).every(block => !block.image), "两种应急切换情况仅用文字，不配图");
+assert.deepEqual(procedure.filter(block => block.number).map(block => block.number), ["01", "02", "03", "04", "05", "01", "02", "03", "04", "05"]);
 assert.equal(procedure[1].tone, "warning");
-assert.equal(procedure.at(-1).title, "快速记忆");
-assert.equal(procedure.at(-2).tone, "success");
+const chillerSteps = procedure.filter(block => block.number);
+assert.match(JSON.stringify(chillerSteps[2]), /从竖直方向，逆时针转向到横着方向/);
+assert.match(JSON.stringify(chillerSteps[7]), /从横着方向，顺时针转向到竖直方向/);
+// Situation two step 4 corrected by the user's explicit on-site instruction.
+assert.equal(chillerSteps[8].paragraphs[0], "到1#冷水机操作屏处，按“启动键”上方的绿色框“【按键】1#接入”，变成红色框按钮“【按键】2#接入”。");
+assert.match(JSON.stringify(chillerSteps[4]), /启动1#冷水机/);
+assert.match(JSON.stringify(chillerSteps[9]), /启动2#冷水机/);
+assert.match(JSON.stringify(procedure), /投入2#冷水机备机/);
+assert.match(JSON.stringify(procedure), /投入1#冷水机主机/);
 const images = [...new Set(procedure.map(block => block.image).filter(Boolean))];
 assert.equal(images.length, 4);
 for (const image of images) {
@@ -84,7 +94,7 @@ for (const block of plc.procedure.filter(block => block.image)) {
   await stat(path.join(root, block.image));
   assert.ok(sw.includes(`"${block.image}"`));
 }
-assert.match(sw, /const CACHE_NAME = "welding-guide-108-v19"/);
+assert.match(sw, /const CACHE_NAME = "welding-guide-108-v22"/);
 assert.doesNotMatch(dataText, /needs_review|待审核|待现场审核|本地草稿|未审核|安全审核|本地新增，待人工核对/);
 const approvedIds = ["centering-block-2-3-home-jam", "secondary-cut-manual-operation", "restore-welder-auto", "nozzle-unblocking-penetration-curve"];
 for (const id of approvedIds) assert.equal(manual.faults.find(item => item.id === id).status, "approved");
