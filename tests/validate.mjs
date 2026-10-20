@@ -94,7 +94,7 @@ for (const block of plc.procedure.filter(block => block.image)) {
   await stat(path.join(root, block.image));
   assert.ok(sw.includes(`"${block.image}"`));
 }
-assert.match(sw, /const CACHE_NAME = "welding-guide-108-v23"/);
+assert.match(sw, /const CACHE_NAME = "welding-guide-108-v24"/);
 assert.doesNotMatch(dataText, /needs_review|待审核|待现场审核|本地草稿|未审核|安全审核|本地新增，待人工核对/);
 const approvedIds = ["centering-block-2-3-home-jam", "secondary-cut-manual-operation", "restore-welder-auto", "nozzle-unblocking-penetration-curve"];
 for (const id of approvedIds) assert.equal(manual.faults.find(item => item.id === id).status, "approved");
