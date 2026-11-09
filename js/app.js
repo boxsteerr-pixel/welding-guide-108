@@ -3,7 +3,6 @@
 
   const state = { manual: null, section: "home", query: "", deferredInstallPrompt: null };
   const sectionNames = ["home", "faults", "maintenance", "safety"];
-  const riskLabels = { high: "高风险", medium: "注意", low: "一般" };
 
   function text(value) {
     return document.createTextNode(value == null ? "" : String(value));
@@ -53,11 +52,7 @@
   function buildEntry(item) {
     const details = document.createElement("details");
     details.className = "manual-entry";
-    details.dataset.risk = item.risk || "medium";
     const summary = document.createElement("summary");
-    const risk = document.createElement("span");
-    risk.className = `risk ${item.risk || "medium"}`;
-    risk.append(text(riskLabels[item.risk] || riskLabels.medium));
     const title = document.createElement("span");
     title.append(text(item.title || "未命名项目"));
     summary.append(title);
@@ -134,7 +129,6 @@
       details.append(summary, body);
       return details;
     }
-    body.append(risk);
     if (item.summary) {
       const paragraph = document.createElement("p");
       paragraph.append(text(item.summary));
