@@ -1,4 +1,4 @@
-const CACHE_NAME = "welding-guide-108-v25";
+const CACHE_NAME = "welding-guide-108-v26";
 const CACHE_PREFIX = "welding-guide-108-";
 const APP_ROOT = new URL("./", self.location.href);
 const MEDIA_SOURCES = [
@@ -28,6 +28,8 @@ const MEDIA_SOURCES = [
 ];
 const MEDIA_ASSETS = MEDIA_SOURCES.map(function (path) { return new URL(path.replace(/\.png$/, ".webp"), APP_ROOT).toString(); });
 const CORE_ASSETS = [
+  "./css/pwa-update.css?v=1",
+  "./js/pwa-update.js?v=1",
   "./css/mobile-header.css?v=2",
   "./js/system-time.js?v=1",
   "./",
@@ -97,6 +99,7 @@ async function removeOldCaches() {
 }
 
 self.addEventListener("message", function (event) {
+  if (event.data && event.data.type === "SKIP_WAITING") self.skipWaiting();
   if (event.data && event.data.type === "CACHE_STATUS") event.waitUntil(mediaProgress(event.source));
   if (event.data && event.data.type === "CACHE_MEDIA") {
     if (!mediaCacheJob) mediaCacheJob = cacheMedia(event.source).finally(function () { mediaCacheJob = null; });
