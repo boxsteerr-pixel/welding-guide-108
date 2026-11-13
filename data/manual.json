@@ -4,15 +4,15 @@
     "machineId": "108",
     "machineName": "108激光焊机",
     "manualTitle": "操作工快速处置手册",
-    "manualVersion": "0.3.7",
-    "contentStatus": "已录入9项异常处理、1项日常维护",
+    "manualVersion": "0.3.9",
+    "contentStatus": "已录入11项异常处理、1项日常维护",
     "lastUpdated": "2026-11-13"
   },
   "notices": [
     {
       "level": "warning",
       "title": "内容范围",
-      "body": "当前已录入9项异常处理及1项日常维护；安全事项内容待录入。"
+      "body": "当前已录入11项异常处理及1项日常维护；安全事项内容待录入。"
     }
   ],
   "faults": [
@@ -1160,6 +1160,161 @@
           ],
           "image": "./assets/images/rofin-10-auto-v2.png",
           "alt": "ROFIN激光源打点：恢复自动并确认，编号和图例标出操作位置"
+        }
+      ]
+    },
+    {
+      "id": "qcds-weld-gap-adjustment",
+      "category": "焊接质量异常",
+      "title": "焊缝质量异常——对接间隙调整",
+      "subtitle": "108激光焊机 · 应急操作 8",
+      "summary": "QCDS 看焊缝质量不佳或冲边开裂后退回重焊时，结合实际焊缝质量调整对接间隙。",
+      "keywords": [
+        "应急操作8",
+        "QCDS",
+        "焊缝质量",
+        "冲边开裂",
+        "对接间隙",
+        "传动侧",
+        "DS"
+      ],
+      "procedure": [
+        {
+          "title": "应急操作 8｜原文说明",
+          "paragraphs": [
+            "QCDS 看焊缝质量不佳或冲边开裂后退回重焊，需结合实际焊缝质量对应的对接间隙选择放大或缩小对接间隙，单侧或两侧调整，一般间隙调整都是 5 丝、10 丝这种 5 的倍数起。"
+          ]
+        },
+        {
+          "title": "C108 案例",
+          "paragraphs": [
+            "如下图 C108 机组 16:31-16:47 停机是对接间隙画面，入口焊机多次重焊，前行规格：1.163*1537mm，后行规格：1.314*1498mm，同钢种：JU6310E6，炉温：780 度。",
+            "原因：看曲线中部到传动侧焊缝发黑，根据间隙画面判断板型异常引起中部到传动侧剪切对接后间隙顶得过紧引起焦点顶偏。"
+          ],
+          "image": "./assets/images/gap8-qcds-original-v2.png",
+          "alt": "PDF 原图：QCDS 画面提示 DS 对接间隙过紧"
+        },
+        {
+          "number": "01",
+          "title": "提示主操降速",
+          "paragraphs": [
+            "提示主操降速。"
+          ],
+          "image": "./assets/images/gap8-step-01-original-v2.png",
+          "alt": "PDF 原文：提示主操降速"
+        },
+        {
+          "number": "02",
+          "title": "切除焊缝及边部月牙弯",
+          "paragraphs": [
+            "焊机打手动将月牙弯拉回夹钳口，切除焊缝及边部月牙弯，一般可以控制在 5 刀内，超过 5 刀要手动将小车开到传动侧进行手动排废板。",
+            "备注：若要超过剪切 5 刀，建议在第 4 刀剪切后直接将小车开到 DS 侧排废板，避免剪切不下再想到查原因、再去排放，耽误时间。"
+          ],
+          "image": "./assets/images/gap8-step-02-original-v2.png",
+          "alt": "PDF 原文：切除焊缝及边部月牙弯"
+        },
+        {
+          "number": "03",
+          "title": "调整传动侧间隙并焊接",
+          "paragraphs": [
+            "焊接前，将焊接参数选择手动参数下，放大传动侧间隙 0.1mm（不放心的话可以放大 0.05mm），然后通过进入“焊接自动步”焊接，QCDS 焊缝无异常后放行去冲边。"
+          ],
+          "image": "./assets/images/gap8-parameter-original-v2.png",
+          "alt": "PDF 原图：焊接参数画面及原有红色箭头"
+        },
+        {
+          "number": "04",
+          "title": "必要时检查焦点偏斜",
+          "paragraphs": [
+            "必要时做段焊检查焦点偏斜情况，若有明显帕偏斜超过 20 个像素差（即 0.2mm）需更改夹钳补偿值，同时与机械点检联系确认。"
+          ],
+          "image": "./assets/images/gap8-step-04-original-v2.png",
+          "alt": "PDF 原文：必要时检查焦点偏斜"
+        }
+      ]
+    },
+    {
+      "id": "preheat-anneal-water-tank-refill",
+      "category": "冷水机异常",
+      "title": "预热、退火水箱加水手顺",
+      "subtitle": "108激光焊机 · 应急操作 11",
+      "summary": "焊机画面上报预热或退火水箱低位时，观察水位并按手顺加水。",
+      "keywords": [
+        "应急操作11",
+        "预热",
+        "退火",
+        "水箱",
+        "水位低",
+        "加水",
+        "冷水机"
+      ],
+      "procedure": [
+        {
+          "number": "01",
+          "title": "确认报警及冷水机",
+          "paragraphs": [
+            "若焊机画面上报预热或退火水箱也为低。",
+            "预热、退火冷水机盘柜柜面上有标识。"
+          ],
+          "image": "./assets/images/emergency11-machine.jpg",
+          "alt": "PDF 原图：预热或退火冷水机柜面"
+        },
+        {
+          "number": "02",
+          "title": "观察水箱水位",
+          "paragraphs": [
+            "观察水箱的水位，预热、退火冷水机盘柜柜面上有标识。",
+            "图中竖直水位管为原文标注的观察位置，观察上、下位置。"
+          ],
+          "image": "./assets/images/emergency11-gauge-annotated-v2.svg",
+          "alt": "PDF 原图：水箱竖直水位管，上下位置为水位观察处"
+        },
+        {
+          "number": "03",
+          "title": "打开冷水机背后盖板",
+          "paragraphs": [
+            "打开冷水机背后的盖板，将盖板取下。"
+          ],
+          "image": "./assets/images/emergency11-cover-annotated-v2.svg",
+          "alt": "PDF 原图：冷水机背后的盖板"
+        },
+        {
+          "number": "04",
+          "title": "打开水箱盖观察水位",
+          "paragraphs": [
+            "打开水箱的盖子再次观察水位，若有明显的水位下降则需要加水。"
+          ],
+          "image": "./assets/images/emergency11-tank.jpg",
+          "alt": "PDF 原图：打开水箱后观察水位"
+        },
+        {
+          "number": "05",
+          "title": "找到水管并擦拭管头",
+          "paragraphs": [
+            "加水的水管位于退火冷水箱后方，注：在使用前先擦拭一下水管头避免污染。"
+          ],
+          "image": "./assets/images/emergency11-water-supply-annotated-v2.svg",
+          "alt": "PDF 原图：退火冷水箱后方加水位置"
+        },
+        {
+          "number": "06",
+          "title": "加水并观察水位",
+          "paragraphs": [
+            "一人加水时：将水管放置于水箱盖板内，在加水时可用手电筒照明水箱，观察水箱水位。",
+            "两人加水时：一人打开水阀，一人观察水位，避免水溢出。",
+            "图为单人作业时水管架设在水箱上的原图。"
+          ],
+          "image": "./assets/images/emergency11-hose-annotated-v2.svg",
+          "alt": "PDF 原图：单人作业时水管架设在水箱上"
+        },
+        {
+          "number": "07",
+          "title": "水位到达后停水复位",
+          "paragraphs": [
+            "注意观察，若水位刚好没过水箱中间的架子时，可停水，关闭水箱盖，关闭冷水机盖板，画面复位。"
+          ],
+          "image": "./assets/images/emergency11-tank.jpg",
+          "alt": "PDF 原图：水箱中间的架子及水位观察位置"
         }
       ]
     }

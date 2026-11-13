@@ -1,7 +1,20 @@
-const CACHE_NAME = "welding-guide-108-v28";
+const CACHE_NAME = "welding-guide-108-v33";
 const CACHE_PREFIX = "welding-guide-108-";
 const APP_ROOT = new URL("./", self.location.href);
 const MEDIA_SOURCES = [
+  "./assets/images/emergency11-machine.jpg",
+  "./assets/images/emergency11-gauge-annotated-v2.svg",
+  "./assets/images/emergency11-cover-annotated-v2.svg",
+  "./assets/images/emergency11-tank.jpg",
+  "./assets/images/emergency11-water-supply-annotated-v2.svg",
+  "./assets/images/emergency11-hose-annotated-v2.svg",
+
+  "./assets/images/gap8-qcds-original-v2.png",
+  "./assets/images/gap8-parameter-original-v2.png",
+  "./assets/images/gap8-step-01-original-v2.png",
+  "./assets/images/gap8-step-02-original-v2.png",
+  "./assets/images/gap8-step-04-original-v2.png",
+
   "./assets/images/rofin-01-keys-v2.png",
   "./assets/images/rofin-02-adjust-v2.png",
   "./assets/images/rofin-03-enable-v2.png",
