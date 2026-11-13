@@ -4,15 +4,15 @@
     "machineId": "108",
     "machineName": "108激光焊机",
     "manualTitle": "操作工快速处置手册",
-    "manualVersion": "0.3.6",
-    "contentStatus": "已录入8项异常处理、1项日常维护",
-    "lastUpdated": "2026-10-20"
+    "manualVersion": "0.3.7",
+    "contentStatus": "已录入9项异常处理、1项日常维护",
+    "lastUpdated": "2026-11-13"
   },
   "notices": [
     {
       "level": "warning",
       "title": "内容范围",
-      "body": "当前已录入8项异常处理及1项日常维护；安全事项内容待录入。"
+      "body": "当前已录入9项异常处理及1项日常维护；安全事项内容待录入。"
     }
   ],
   "faults": [
@@ -84,8 +84,8 @@
             "2、在确认切换阀台管路上3个阀门已切换到横着方向后。",
             "3、按“机组启动按键”运行1#冷水机。"
           ],
-        "image": "./assets/images/chiller-1-panel-startup.png",
-        "alt": "1#冷水机操作界面现场标注图：接入选择按钮和机组启动按键"
+          "image": "./assets/images/chiller-1-panel-startup.png",
+          "alt": "1#冷水机操作界面现场标注图：接入选择按钮和机组启动按键"
         },
         {
           "title": "应急操作手顺简化",
@@ -1047,6 +1047,119 @@
             "□ 焊接小车已回操作侧",
             "□ 按正常操作流程执行剩余剪切"
           ]
+        }
+      ]
+    },
+    {
+      "id": "rofin-laser-spotting",
+      "category": "激光源操作",
+      "title": "ROFIN激光源打点手顺",
+      "subtitle": "108激光焊机 · 激光源打点",
+      "summary": "ROFIN激光源打点、红光检查及打点后的恢复操作。",
+      "keywords": [
+        "ROFIN",
+        "激光源",
+        "打点",
+        "红光",
+        "P62"
+      ],
+      "procedure": [
+        {
+          "title": "操作前确认",
+          "tone": "warning",
+          "paragraphs": [
+            "激光打点及高压操作应由具备现场授权的人员按照现行安全规程执行；确认人员、光路及防护条件符合现场要求。原 PDF 的恢复操作顺序存在重复表述，执行前应按现场确认的顺序操作。"
+          ]
+        },
+        {
+          "number": "01",
+          "title": "切换现场钥匙开关",
+          "paragraphs": [
+            "将现场操作面板的“操作模式选择”和“激光模式选择”钥匙开关均打到“手动”位置；“激光光闸”钥匙开关保持“允许”状态。"
+          ],
+          "image": "./assets/images/rofin-01-keys-v2.png",
+          "alt": "ROFIN激光源打点：切换现场钥匙开关，编号和图例标出操作位置"
+        },
+        {
+          "number": "02",
+          "title": "进入机器调整",
+          "paragraphs": [
+            "在焊机 HMI 总画面选择“机器调整”。"
+          ],
+          "image": "./assets/images/rofin-02-adjust-v2.png",
+          "alt": "ROFIN激光源打点：进入机器调整，编号和图例标出操作位置"
+        },
+        {
+          "number": "03",
+          "title": "开启激光源相关选项",
+          "paragraphs": [
+            "在机器调整画面将“激光源检修模式”“高压”和“光闸”选中 ON。原文注明红光和高压相互联锁。"
+          ],
+          "image": "./assets/images/rofin-03-enable-v2.png",
+          "alt": "ROFIN激光源打点：开启激光源相关选项，编号和图例标出操作位置"
+        },
+        {
+          "number": "04",
+          "title": "进入 ROFIN 画面",
+          "paragraphs": [
+            "返回总画面，选择“激光调节画面”，进入 ROFIN 界面。"
+          ],
+          "image": "./assets/images/rofin-04-screen-v2.png",
+          "alt": "ROFIN激光源打点：进入 ROFIN 画面，编号和图例标出操作位置"
+        },
+        {
+          "number": "05",
+          "title": "需要红光时",
+          "paragraphs": [
+            "如需红光，先选择“Ⅱ”模式，再按 F8（POS.LASER）开启红光；再次按 F8 关闭红光。"
+          ],
+          "image": "./assets/images/rofin-05-red-light-v2.png",
+          "alt": "ROFIN激光源打点：需要红光时，编号和图例标出操作位置"
+        },
+        {
+          "number": "06",
+          "title": "确认打点程序",
+          "paragraphs": [
+            "确认处于 P62 状态；如不是，按 F3，在弹出的方框中将数字改为 62。原文说明正常焊接使用 P0，打点使用 P62，P63 为专业人员测试程序。"
+          ],
+          "image": "./assets/images/rofin-06-program-v2.png",
+          "alt": "ROFIN激光源打点：确认打点程序，编号和图例标出操作位置"
+        },
+        {
+          "number": "07",
+          "title": "进行打点",
+          "paragraphs": [
+            "打开“高压”和“光闸”，连续双击“启动激光”按钮进行打点。查看 LEVEL 1 功率；原文说明如需提高功率，按 F1 输入所需功率后打点，60% 为示例值。"
+          ],
+          "image": "./assets/images/rofin-07-shot-v2.png",
+          "alt": "ROFIN激光源打点：进行打点，编号和图例标出操作位置"
+        },
+        {
+          "number": "08",
+          "title": "打点完成：关闭高压",
+          "paragraphs": [
+            "打点完成后，按“O”关闭“高压”。"
+          ],
+          "image": "./assets/images/rofin-08-close-v2.png",
+          "alt": "ROFIN激光源打点：打点完成：关闭高压，编号和图例标出操作位置"
+        },
+        {
+          "number": "09",
+          "title": "关闭相关选项",
+          "paragraphs": [
+            "在机器调整画面将“激光源检修模式”“高压”和“光闸”选中 OFF。"
+          ],
+          "image": "./assets/images/rofin-09-off-v2.png",
+          "alt": "ROFIN激光源打点：关闭相关选项，编号和图例标出操作位置"
+        },
+        {
+          "number": "10",
+          "title": "恢复自动并确认",
+          "paragraphs": [
+            "将现场“操作模式选择”和“激光模式选择”钥匙开关均打到“自动”位置，并确认焊机当前焊接状态处于“自动”方式。"
+          ],
+          "image": "./assets/images/rofin-10-auto-v2.png",
+          "alt": "ROFIN激光源打点：恢复自动并确认，编号和图例标出操作位置"
         }
       ]
     }
