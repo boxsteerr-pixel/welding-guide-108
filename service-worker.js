@@ -1,4 +1,4 @@
-const CACHE_NAME = "welding-guide-108-v33";
+const CACHE_NAME = "welding-guide-108-v34";
 const CACHE_PREFIX = "welding-guide-108-";
 const APP_ROOT = new URL("./", self.location.href);
 const MEDIA_SOURCES = [
@@ -25,7 +25,7 @@ const MEDIA_SOURCES = [
   "./assets/images/rofin-08-close-v2.png",
   "./assets/images/rofin-09-off-v2.png",
   "./assets/images/rofin-10-auto-v2.png",
-  "./assets/images/scrap-belt-flashing-stop.png",
+  "./assets/images/scrap-belt-flashing-stop-v2.png",
   "./assets/images/scrap-belt-manual-to-auto.png",
   "./assets/images/scrap-belt-shear-adjustment-mode.png",
   "./assets/images/centering-home-force.png",

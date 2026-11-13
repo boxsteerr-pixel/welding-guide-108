@@ -13,7 +13,7 @@ const manifest = JSON.parse(manifestText);
 
 assert.equal(manual.machine.machineId, "108");
 assert.equal(manual.machine.machineName, "108激光焊机");
-assert.equal(manual.machine.manualVersion, "0.3.9");
+assert.equal(manual.machine.manualVersion, "0.3.10");
 assert.equal(manual.faults.length, 11);
 assert.equal(new Set(manual.faults.map(item => item.id)).size, manual.faults.length);
 const belt = manual.faults.find(item => item.id === "scissor-scrap-belt-discharge");
@@ -94,7 +94,7 @@ for (const block of plc.procedure.filter(block => block.image)) {
   await stat(path.join(root, block.image));
   assert.ok(sw.includes(`"${block.image}"`));
 }
-assert.match(sw, /const CACHE_NAME = "welding-guide-108-v33"/);
+assert.match(sw, /const CACHE_NAME = "welding-guide-108-v34"/);
 const rofin = manual.faults.find(item => item.id === "rofin-laser-spotting");
 assert.equal(rofin.procedure.filter(block => block.number && block.image).length, 10);
 assert.match(JSON.stringify(rofin), /P62/);

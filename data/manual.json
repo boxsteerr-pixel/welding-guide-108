@@ -4,7 +4,7 @@
     "machineId": "108",
     "machineName": "108激光焊机",
     "manualTitle": "操作工快速处置手册",
-    "manualVersion": "0.3.9",
+    "manualVersion": "0.3.10",
     "contentStatus": "已录入11项异常处理、1项日常维护",
     "lastUpdated": "2026-11-13"
   },
@@ -933,7 +933,7 @@
             "此时需要将焊接小车开到传动侧，手动启动废料皮带排放，设定运行时间为17秒。",
             "未按要求完成排放时，废料传送皮带运转信号可能持续闪烁；按下“停止”后仍闪烁，剪刀无法继续剪切。反复操作“运转”或“停止”，异常仍无法消除。"
           ],
-          "image": "./assets/images/scrap-belt-flashing-stop.png",
+          "image": "./assets/images/scrap-belt-flashing-stop-v2.png",
           "alt": "废料传送皮带右侧运转信号持续闪烁标注图，中间为红色停止按钮"
         },
         {
@@ -953,7 +953,7 @@
             "在HMI“废料传送皮带”控制区域，按下中间红色“停止”按钮。",
             "即使废料皮带已经停止运转，HMI上的运转信号仍可能继续闪烁。"
           ],
-          "image": "./assets/images/scrap-belt-flashing-stop.png",
+          "image": "./assets/images/scrap-belt-flashing-stop-v2.png",
           "alt": "废料传送皮带控制区域原图：中间红色停止按钮；右侧按钮有持续闪烁标注"
         },
         {
