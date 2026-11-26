@@ -247,3 +247,8 @@ button:focus-visible, input:focus-visible, summary:focus-visible { outline:3px s
 .image-retry[hidden] { display:none; }
 .offline-progress { margin-top:8px; padding:8px 0; border:0; background:transparent; color:inherit; font:inherit; font-size:13px; text-align:left; }
 .chiller-block img:not([src]) { min-height:100px; }
+
+/* 安全提醒与 101 手册保持一致 */
+.safety-reminder { padding: 14px; border: 1px solid #ffe1dc; border-left: 4px solid #d94b4b; border-radius: 10px; background: #fff7f6; box-shadow: 0 6px 18px rgba(8,48,92,.08); }
+.safety-reminder h3 { margin: 0 0 8px; color: #d94b4b; font-size: 17px; }
+.safety-reminder p { margin: 0; line-height: 1.6; }

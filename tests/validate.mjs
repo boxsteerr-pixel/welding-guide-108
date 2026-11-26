@@ -96,7 +96,7 @@ for (const block of plc.procedure.filter(block => block.image)) {
   await stat(path.join(root, block.image));
   assert.ok(sw.includes(`"${block.image}"`));
 }
-assert.match(sw, /const CACHE_NAME = "welding-guide-108-v35"/);
+assert.match(sw, /const CACHE_NAME = "welding-guide-108-v36"/);
 const rofin = manual.faults.find(item => item.id === "rofin-laser-spotting");
 assert.equal(rofin.procedure.filter(block => block.number && block.image).length, 10);
 assert.match(JSON.stringify(rofin), /P62/);
